@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import home from "./pages/home";
 import Signup from "./pages/signup";
-import Login from "./pages/logins";
+import Login from './pages/login';
 
 import axios from "axios";
 
