@@ -1,78 +1,140 @@
 import React, { useState } from "react";
 
 function Signup() {
-  const [input, setinput] = useState("input");
+  const [inputs, setInputs] = useState({});
+  const [roleToggler, setRoleToggler] = useState(false);
+
+  const handleChange = e => {
+    setInputs({ ...inputs, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    console.log(inputs);
+  };
 
   return (
     <div style={{ color: "#fff" }}>
       <div className="context container">
-        <h1 style={{ textAlign: "center" }}>Signup</h1>
-        <form className="form-center">
-          <div class="row">
-            <div class="six columns">
-              <label for="exampleEmailInput">Your email</label>
+        <div className="signup-title">
+          <h1 className="signup-title">Signup</h1>
+          <div className="switch-role row">
+            <p className="four columns">Customer</p>
+            <div className="four columns">
               <input
-                class="u-full-width"
+                name="role-toggler"
+                className="tgl tgl-ios"
+                id="cb2"
+                onChange={() => setRoleToggler(!roleToggler)}
+                value={roleToggler}
+                type="checkbox"
+              />
+              <label className="tgl-btn" htmlFor="cb2"></label>
+            </div>
+            <p className="four columns">Worker</p>
+          </div>
+        </div>
+        <form onSubmit={handleSubmit} className="form-center">
+          <div className="row">
+            <div className="six columns">
+              <label htmlFor="exampleEmailInput">Your email</label>
+              <input
+                required
+                name="email"
+                id="email"
+                className="u-full-width"
                 type="email"
                 placeholder="test@mailbox.com"
-                id="exampleEmailInput"
+                autoComplete="off"
+                value={inputs.email}
+                onChange={handleChange}
               />
             </div>
-            <div class="six columns">
-              <label for="exampleEmailInput">full name</label>
+            <div className="six columns">
+              <label htmlFor="exampleEmailInput">full name</label>
               <input
-                class="u-full-width"
+                required
+                name="full_name"
+                id="full_name"
+                className="u-full-width"
                 type="text"
                 placeholder="Jhon Doe"
-                id="exampleEmailInput"
+                autoComplete="off"
+                value={inputs.full_name}
+                onChange={handleChange}
               />
             </div>
           </div>
-          <div class="row">
-            <div class="six columns">
-              <label for="exampleEmailInput">Password</label>
+          <div className="row">
+            <div className="six columns">
+              <label htmlFor="exampleEmailInput">Password</label>
               <input
-                class="u-full-width"
+                required
+                name="password"
+                id="password"
+                className="u-full-width"
                 type="password"
                 placeholder="password"
-                id="exampleEmailInput"
+                autoComplete="off"
+                value={inputs.password}
+                onChange={handleChange}
               />
             </div>
-            <div class="six columns">
-              <label for="exampleEmailInput">User name</label>
+            <div className="six columns">
+              <label htmlFor="exampleEmailInput">User name</label>
               <input
-                class="u-full-width"
+                required
+                name="username"
+                id="username"
+                className="u-full-width"
                 type="text"
                 placeholder="jhon"
-                id="exampleEmailInput"
+                autoComplete="off"
+                value={inputs.username}
+                onChange={handleChange}
               />
             </div>
           </div>
-          <div class="row">
-            <div class="six columns">
-              <label for="exampleEmailInput">Phone number</label>
+          <div className="row">
+            <div className="six columns">
+              <label htmlFor="exampleEmailInput">Phone number</label>
               <input
-                class="u-full-width"
-                type="email"
+                required
+                name="phone_number"
+                id="phone_number"
+                className="u-full-width"
+                type="text"
                 placeholder="tel. 908 78999 789"
-                id="exampleEmailInput"
+                autoComplete="off"
+                value={inputs.phone_number}
+                onChange={handleChange}
               />
             </div>
-            <div class="six columns">
-              <label for="exampleRecipientInput">Career</label>
-              <select class="u-full-width" id="exampleRecipientInput">
-                <option value="Electricians">Electricians</option>
-                <option value="Plumbers">Plumbers</option>
-                <option value="Mechanics">Mechanics</option>
-              </select>
-            </div>
+            {roleToggler ? (
+              <div className="six columns">
+                <label htmlFor="exampleRecipientInput">Career</label>
+                <select
+                  name="career"
+                  id="career"
+                  onChange={handleChange}
+                  className="u-full-width"
+                  defaultValue="Electricians"
+                  value={inputs.career}
+                >
+                  <option value="Plumbers">Plumbers </option>
+                  <option value="Mechanics">Mechanics</option>
+                  <option value="Electricians">Electricians</option>
+                </select>
+              </div>
+            ) : null}
           </div>
-          <input class="button-primary" type="submit" value="Submit" />
+          <input className="button-primary" type="submit" value="Submit" />
         </form>
       </div>
 
-      <div class="area">
-        <ul class="circles">
+      <div className="area">
+        <ul className="circles">
           <li></li>
           <li></li>
           <li></li>
@@ -90,114 +152,3 @@ function Signup() {
 }
 
 export default Signup;
-
-// import React, { useState } from "react";
-
-// function Submit() {
-//   const [inputs, setInputs] = useState({});
-
-//   const handleChange = e => {
-//     e.persist();
-//     setInputs(inputs => ({ ...inputs, [e.target.name]: e.target.value }));
-//   };
-
-//   const handleSubmit = e => {
-//     e.preventDefault();
-//     alert("subited");
-//     console.log(inputs);
-//   };
-//   return (
-//     <div className="page_container">
-//       <div className="context context-center-form">
-//         <h1 className="center">Login</h1>
-//         <form onSubmit={handleSubmit}>
-//           <div class="form-group">
-//             <label for="exampleInputEmail1">Email address</label>
-//             <input
-//               type="email"
-//               class="form-control"
-//               id="exampleInputEmail1"
-//               aria-describedby="emailHelp"
-//               placeholder="Enter email"
-//             />
-//             <small id="emailHelp" class="form-text text-muted">
-//               We'll never share your email with anyone else.
-//             </small>
-//           </div>
-//           <input
-//             required
-//             name="full_name"
-//             className="block-width"
-//             type="text"
-//             placeholder="full name"
-//             onChange={handleChange}
-//           />
-//           <input
-//             required
-//             name="email"
-//             className="block-width"
-//             type="email"
-//             placeholder="email"
-//             onChange={handleChange}
-//           />
-//           <input
-//             required
-//             name="password"
-//             className="block-width"
-//             type="password"
-//             placeholder="password"
-//             onChange={handleChange}
-//           />
-//           <input
-//             required
-//             name="username"
-//             className="block-width"
-//             type="text"
-//             placeholder="username"
-//             onChange={handleChange}
-//           />
-//           <input
-//             required
-//             name="phone_number"
-//             className="block-width"
-//             type="telephone"
-//             placeholder="phone number"
-//             onChange={handleChange}
-//           />
-//           <select
-//             required
-//             name="career"
-//             className="block-width submit-center"
-//             onChange={handleChange}
-//           >
-//             <option value="Electricians">Electricians</option>
-//             <option value="Plumbers">Plumbers</option>
-//             <option value="Mechanics">Mechanics</option>
-//           </select>
-//           <input
-//             className="block-width submit-center"
-//             type="submit"
-//             value="login"
-//           />
-//         </form>
-//       </div>
-
-//       <div class="area">
-//         <ul class="circles">
-//           <li></li>
-//           <li></li>
-//           <li></li>
-//           <li></li>
-//           <li></li>
-//           <li></li>
-//           <li></li>
-//           <li></li>
-//           <li></li>
-//           <li></li>
-//         </ul>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Submit;

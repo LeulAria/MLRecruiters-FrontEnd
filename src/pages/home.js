@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./backgroundanim.css";
+import "./pagesstyles.css";
 
 function home() {
   return (
     <div className="page_container">
       <div className="context">
         <div className="hero-section">
-          <img src="../hero.png" className="hero-img" />
+          <img src="../hero.png" className="hero-img" alt="ml recruiters img" />
           <h1 className="txtr">ML Recruiters</h1>
           <p className="txtr hero-detail">
             Connect you'r self with tons of others croud of professionals, with
@@ -35,8 +35,8 @@ function home() {
         </div>
       </div>
 
-      <div class="area">
-        <ul class="circles">
+      <div className="area">
+        <ul className="circles">
           <li></li>
           <li></li>
           <li></li>
